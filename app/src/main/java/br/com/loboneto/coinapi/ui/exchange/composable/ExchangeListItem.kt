@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -26,20 +28,16 @@ fun ExchangeListItem(
     modifier: Modifier = Modifier
 ) {
 
-    Box(
-        modifier = Modifier
-            .padding(8.dp)
-            .background(MaterialTheme.colorScheme.surface)
-            .border(width = 0.dp, color = Color.Transparent, shape = RoundedCornerShape(14.dp))
-            .fillMaxWidth()
+    Card(
+        modifier = modifier.padding(8.dp).fillMaxWidth(),
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
-
-
         Column(
-            modifier = Modifier.padding(8.dp)
+            modifier = Modifier.padding(16.dp)
         ) {
             Text(
-                text = exchange.name,
+                text = exchange.name.orEmpty(),
                 style = TextStyle(
                     fontWeight = FontWeight.Bold
                 ),
