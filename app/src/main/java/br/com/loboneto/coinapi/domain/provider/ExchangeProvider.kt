@@ -7,7 +7,7 @@ object ExchangeProvider {
         id = "BINANCE",
         website = "https://www.binance.com/",
         name = "Binance",
-        usdDailyVolume = 120000000.34,
+        usdDailyVolume = "U\$D 1,200,00,000.34",
          icon = null
     )
 
@@ -15,7 +15,7 @@ object ExchangeProvider {
         id = "COINBASE",
         website = "https://pro.coinbase.com/",
         name = "Coinbase",
-        usdDailyVolume = 80000000.45,
+        usdDailyVolume = "U\$D 80,000,000.45",
         icon = "https://s3.eu-central-1.amazonaws.com/bbxt-static-icons/type-id/png_512/5503eb9673f9437988702f06cbd7072b.png"
     )
 

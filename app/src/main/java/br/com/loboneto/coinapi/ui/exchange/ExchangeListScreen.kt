@@ -11,7 +11,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import br.com.loboneto.coinapi.domain.model.Exchange
 import br.com.loboneto.coinapi.domain.provider.ExchangeProvider
 import br.com.loboneto.coinapi.ui.exchange.composable.ExchangeListItem
 import br.com.loboneto.coinapi.ui.theme.CoinApiTheme
@@ -24,14 +23,15 @@ fun ExchangeListScreen(
 
     Surface(
         modifier = modifier
-            .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background)
+            .fillMaxSize()
+
     ) {
         LazyColumn {
             item {
                 Text(
                     modifier = Modifier.padding(8.dp),
-                    text = "CoinApi"
+                    text = "Exchanges"
                 )
             }
             items(state.exchanges.size) { index ->

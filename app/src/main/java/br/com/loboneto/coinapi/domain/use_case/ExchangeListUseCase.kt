@@ -20,7 +20,7 @@ class GetExchangeListUseCaseImpl(
         return exchanges.map {
             mapper.map(
                 it,
-                icons.first { icon -> icon.exchangeId == it.exchangeId }
+                icons.firstOrNull { icon -> icon.exchangeId == it.exchangeId }
             )
         }
     }
