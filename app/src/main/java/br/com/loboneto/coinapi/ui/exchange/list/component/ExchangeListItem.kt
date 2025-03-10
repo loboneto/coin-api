@@ -32,7 +32,6 @@ fun ExchangeListItem(
     onClick: (Exchange) -> Unit,
     modifier: Modifier = Modifier
 ) {
-
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),

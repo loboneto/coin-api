@@ -33,8 +33,8 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import br.com.loboneto.coinapi.R
 import br.com.loboneto.coinapi.domain.provider.ExchangeProvider
-import br.com.loboneto.coinapi.ui.ds.DSButton
-import br.com.loboneto.coinapi.ui.ds.DSButtonType
+import br.com.loboneto.coinapi.ui.ds.button.DSButton
+import br.com.loboneto.coinapi.ui.ds.button.DSButtonType
 import br.com.loboneto.coinapi.ui.ds.DSTextStyle
 import br.com.loboneto.coinapi.ui.exchange.ExchangeViewModel
 import br.com.loboneto.coinapi.ui.exchange.list.state_management.ExchangeListState
@@ -48,7 +48,6 @@ fun ExchangeDetailScreen(
     viewModel: ExchangeViewModel,
     navController: NavController
 ) {
-
     val state = viewModel.state.collectAsStateWithLifecycle().value
 
     val launcher =

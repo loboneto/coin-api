@@ -1,5 +1,6 @@
 package br.com.loboneto.coinapi.core.di
 
+import br.com.loboneto.coinapi.core.Constants
 import br.com.loboneto.coinapi.data.remote.ExchangeApi
 import br.com.loboneto.coinapi.data.repository.ExchangeRepositoryImpl
 import br.com.loboneto.coinapi.domain.mapper.ExchangeMapper
@@ -25,7 +26,7 @@ val appModule = module {
             .build()
 
         Retrofit.Builder()
-            .baseUrl("https://rest.coinapi.io/")
+            .baseUrl(Constants.API_URL)
             .client(client)
             .addConverterFactory(GsonConverterFactory.create())
             .build()

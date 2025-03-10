@@ -11,16 +11,12 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import br.com.loboneto.coinapi.core.Routes
 import br.com.loboneto.coinapi.ui.exchange.ExchangeViewModel
 import br.com.loboneto.coinapi.ui.exchange.detail.ExchangeDetailScreen
 import br.com.loboneto.coinapi.ui.exchange.list.ExchangeListScreen
 import br.com.loboneto.coinapi.ui.theme.CoinApiTheme
 import org.koin.androidx.compose.koinViewModel
-
-enum class Routes(val route: String) {
-    ExchangeList("exchange-list"),
-    ExchangeDetail("exchange-detail")
-}
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

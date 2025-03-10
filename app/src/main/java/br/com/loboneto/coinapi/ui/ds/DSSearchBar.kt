@@ -46,7 +46,7 @@ fun DSSearchBar(
         },
         placeholder = {
             Text(
-                text = "Search exchange",
+                text = "Buscar corretora",
                 color = MaterialTheme.colorScheme.onSurface
             )
         },
@@ -74,7 +74,8 @@ fun DSSearchBar(
 fun DSSearchBarPreview() {
     CoinApiTheme {
         DSSearchBar(
-            text = "", {},
+            text = "",
+            onTextChange = {},
             focusRequester = FocusRequester(),
             focusManager = LocalFocusManager.current
         )

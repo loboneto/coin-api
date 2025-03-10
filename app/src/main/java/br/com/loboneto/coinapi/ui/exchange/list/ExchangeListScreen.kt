@@ -31,9 +31,9 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import br.com.loboneto.coinapi.R
+import br.com.loboneto.coinapi.core.Routes
 import br.com.loboneto.coinapi.domain.model.Exchange
 import br.com.loboneto.coinapi.domain.provider.ExchangeProvider
-import br.com.loboneto.coinapi.ui.Routes
 import br.com.loboneto.coinapi.ui.ds.DSSearchBar
 import br.com.loboneto.coinapi.ui.ds.DSTextStyle
 import br.com.loboneto.coinapi.ui.exchange.ExchangeViewModel
@@ -49,7 +49,6 @@ fun ExchangeListScreen(
 ) {
 
     val state = viewModel.state.collectAsStateWithLifecycle().value
-    println("---> state: $state")
 
     LaunchedEffect(Unit) {
         viewModel.getExchanges()
@@ -156,7 +155,7 @@ private fun Header() {
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxWidth(),
-            text = "Exchanges",
+            text = "Corretoras",
             style = DSTextStyle.header
         )
     }
@@ -164,7 +163,7 @@ private fun Header() {
 
 @Composable
 @PreviewLightDark
-fun ExchangeListScreenPreview() {
+fun ExchangeListPagePreview() {
     CoinApiTheme {
         ExchangeListPage(
             state = ExchangeListState(

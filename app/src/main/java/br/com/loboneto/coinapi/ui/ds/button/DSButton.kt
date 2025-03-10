@@ -1,4 +1,4 @@
-package br.com.loboneto.coinapi.ui.ds
+package br.com.loboneto.coinapi.ui.ds.button
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,11 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import br.com.loboneto.coinapi.ui.theme.CoinApiTheme
-
-sealed interface DSButtonType {
-    data object Primary : DSButtonType
-    data object Secondary : DSButtonType
-}
 
 @Composable
 fun DSButton(
@@ -51,11 +46,11 @@ fun DSButton(
 
 @Composable
 @PreviewLightDark
-fun DSButtonPreview(modifier: Modifier = Modifier) {
+fun DSButtonPreview() {
     CoinApiTheme {
         Column {
-            DSButton("Teste", onClick = {})
-            DSButton("Teste", onClick = {}, type = DSButtonType.Secondary)
+            DSButton("Button", onClick = {})
+            DSButton("Button", onClick = {}, type = DSButtonType.Secondary)
         }
     }
 }

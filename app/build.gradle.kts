@@ -37,6 +37,12 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
+    }
+    buildTypes {
+        debug {
+            buildConfigField("String", "API_KEY", "${project.properties["API_KEY"]}")
+        }
     }
 }
 
