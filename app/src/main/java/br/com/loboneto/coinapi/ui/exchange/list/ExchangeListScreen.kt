@@ -1,5 +1,6 @@
 package br.com.loboneto.coinapi.ui.exchange.list
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -10,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -21,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewLightDark
@@ -104,6 +107,7 @@ private fun ExchangeListPage(
     ) { padding ->
         Column(
             modifier = Modifier.padding(horizontal = 16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Header()
             DSSearchBar(
@@ -114,6 +118,14 @@ private fun ExchangeListPage(
                 focusManager = focusManager,
                 focusRequester = focusRequester
             )
+
+            AnimatedVisibility(visible = state.isLoading) {
+                CircularProgressIndicator(
+                    modifier = Modifier.padding(top = 16.dp),
+                    color = MaterialTheme.colorScheme.primary,
+                    strokeCap = StrokeCap.Round
+                )
+            }
 
             LazyColumn(
                 modifier = Modifier.padding(top = 16.dp),
