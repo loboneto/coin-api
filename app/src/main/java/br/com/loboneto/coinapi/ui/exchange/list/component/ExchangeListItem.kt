@@ -1,8 +1,5 @@
-package br.com.loboneto.coinapi.ui.exchange.composable
+package br.com.loboneto.coinapi.ui.exchange.list.component
 
-import android.content.Intent
-import androidx.activity.compose.rememberLauncherForActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -19,16 +16,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.core.net.toUri
 import br.com.loboneto.coinapi.domain.model.Exchange
 import br.com.loboneto.coinapi.domain.provider.ExchangeProvider
+import br.com.loboneto.coinapi.ui.ds.DSTextStyle
 import br.com.loboneto.coinapi.ui.theme.CoinApiTheme
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
@@ -36,20 +29,16 @@ import coil.request.ImageRequest
 @Composable
 fun ExchangeListItem(
     exchange: Exchange,
+    onClick: (Exchange) -> Unit,
     modifier: Modifier = Modifier
 ) {
-    val launcher =
-        rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) {}
 
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
         elevation = CardDefaults.cardElevation(0.dp),
         onClick = {
-            exchange.website?.let {
-                val intent = Intent(Intent.ACTION_VIEW, it.toUri())
-                launcher.launch(intent)
-            }
+            onClick(exchange)
         }
     ) {
         Row(
@@ -67,12 +56,11 @@ fun ExchangeListItem(
                 contentAlignment = Alignment.Center
             ) {
                 Image(
-                    modifier = Modifier,
+                    modifier = Modifier.padding(8.dp),
                     painter = rememberAsyncImagePainter(
                         ImageRequest.Builder(LocalContext.current).data(exchange.icon)
                             .crossfade(true).build()
                     ),
-                    colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurface),
                     contentDescription = null
                 )
             }
@@ -82,16 +70,14 @@ fun ExchangeListItem(
                 Text(
                     modifier = Modifier.fillMaxWidth(),
                     text = exchange.name.orEmpty(),
-                    style = TextStyle(
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold
-                    ),
-                    color = MaterialTheme.colorScheme.onBackground
+                    style = DSTextStyle.primary,
                 )
                 Text(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .padding(top = 4.dp)
+                        .fillMaxWidth(),
                     text = "${exchange.usdDailyVolume} (24h)",
-                    color = MaterialTheme.colorScheme.onSurface
+                    style = DSTextStyle.secondary,
                 )
             }
         }
@@ -103,7 +89,8 @@ fun ExchangeListItem(
 fun ExchangeListItemPreview() {
     CoinApiTheme {
         ExchangeListItem(
-            exchange = ExchangeProvider.binance
+            exchange = ExchangeProvider.binance,
+            onClick = {}
         )
     }
 }

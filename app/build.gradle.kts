@@ -58,11 +58,15 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.kotlinx.serialization)
     implementation(libs.coil)
+    implementation(libs.androidx.navigation.compose)
 
     debugImplementation(libs.androidx.ui.test.manifest)
     debugImplementation(libs.androidx.ui.tooling)
 
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.coroutines.test)
 
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

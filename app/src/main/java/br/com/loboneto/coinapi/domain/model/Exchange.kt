@@ -1,9 +1,11 @@
 package br.com.loboneto.coinapi.domain.model
 
 data class Exchange(
-    val id: String?,
-    val website: String?,
-    val name: String?,
-    val usdDailyVolume: String?,
-    val icon: String?
+    val id: String? = null,
+    val website: String? = null,
+    val name: String? = null,
+    val usdHourlyVolume: String? = null,
+    val usdDailyVolume: String? = null,
+    val usdMonthlyVolume: String? = null,
+    val icon: String? = null
 )

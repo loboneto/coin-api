@@ -14,9 +14,7 @@ class GetExchangeListUseCaseImpl(
 ) : GetExchangeListUseCase {
     override suspend fun invoke(): List<Exchange> {
         val exchanges = repository.getExchanges()
-        println("---> exchanges: $exchanges")
         val icons = repository.getExchangeIcons()
-        println("---> icons: $icons")
         return exchanges.map {
             mapper.map(
                 it,

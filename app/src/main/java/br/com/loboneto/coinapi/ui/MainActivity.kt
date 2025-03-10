@@ -7,37 +7,50 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import br.com.loboneto.coinapi.ui.exchange.ExchangeListScreen
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import br.com.loboneto.coinapi.ui.exchange.ExchangeViewModel
+import br.com.loboneto.coinapi.ui.exchange.detail.ExchangeDetailScreen
+import br.com.loboneto.coinapi.ui.exchange.list.ExchangeListScreen
 import br.com.loboneto.coinapi.ui.theme.CoinApiTheme
-import org.koin.android.ext.android.inject
+import org.koin.androidx.compose.koinViewModel
+
+enum class Routes(val route: String) {
+    ExchangeList("exchange-list"),
+    ExchangeDetail("exchange-detail")
+}
 
 class MainActivity : ComponentActivity() {
-
-    private val viewModel by inject<ExchangeViewModel>()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             CoinApiTheme {
-
-                val state = viewModel.state.collectAsStateWithLifecycle().value
-                LaunchedEffect(Unit) { // Executa apenas uma vez
-                    viewModel.getExchanges()
-                }
-
+                val viewModel = koinViewModel<ExchangeViewModel>()
+                val navController = rememberNavController()
                 Scaffold(
                     modifier = Modifier.fillMaxSize()
                 ) { innerPadding ->
-                    ExchangeListScreen(
+                    NavHost(
                         modifier = Modifier.padding(innerPadding),
-                        state = state,
-                    )
+                        navController = navController,
+                        startDestination = Routes.ExchangeList.route
+                    ) {
+                        composable(Routes.ExchangeList.route) {
+                            ExchangeListScreen(
+                                viewModel = viewModel,
+                                navController = navController
+                            )
+                        }
+                        composable(Routes.ExchangeDetail.route) {
+                            ExchangeDetailScreen(
+                                viewModel = viewModel,
+                                navController = navController
+                            )
+                        }
+                    }
                 }
             }
         }

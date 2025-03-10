@@ -1,13 +1,12 @@
 package br.com.loboneto.coinapi.data.model
 
 import com.google.gson.annotations.SerializedName
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ExchangeIconResponse(
     @SerializedName("exchange_id")
-    val exchangeId: String,
+    val exchangeId: String? = null,
     @SerializedName("url")
-    val url: String,
+    val url: String? = null,
 )

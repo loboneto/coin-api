@@ -13,8 +13,12 @@ class ExchangeMapper : IMapper<ExchangeResponse, ExchangeIconResponse?, Exchange
             id = from.exchangeId,
             website = from.website,
             name = from.name,
+            usdHourlyVolume = NumberFormat.getCurrencyInstance(Locale.US)
+                .format(from.oneHourVolumeUsd),
             usdDailyVolume = NumberFormat.getCurrencyInstance(Locale.US)
                 .format(from.oneDayVolumeUsd),
+            usdMonthlyVolume = NumberFormat.getCurrencyInstance(Locale.US)
+                .format(from.oneMonthVolumeUsd),
             icon = comp?.url
         )
     }
